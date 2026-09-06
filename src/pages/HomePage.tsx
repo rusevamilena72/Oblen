@@ -130,7 +130,7 @@ const HomePage: React.FC = () => {
                     {/* Content */}
                     <div className="p-6">
                       <div className="flex items-center justify-between gap-2 mb-3">
-                        <CategoryBadge category={listing.category} />
+                        <CategoryBadge category={listing.category} to={categoryInfo?.path} />
                         <div className="flex items-center space-x-1 text-gray-400 text-xs shrink-0">
                           <Clock size={12} />
                           <span>{formatDate(listing.created_at)}</span>
@@ -152,7 +152,7 @@ const HomePage: React.FC = () => {
                         </div>
                       )}
 
-                      <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center justify-between">
                         <div className="text-2xl font-bold text-berry-700">
                           {listing.price.toFixed(2)} €
                         </div>
@@ -164,13 +164,6 @@ const HomePage: React.FC = () => {
                           Виж детайли →
                         </Link>
                       </div>
-
-                      <Link
-                        to={categoryInfo?.path || '/'}
-                        className="inline-flex items-center gap-1 text-xs text-wood-700 hover:text-wood-800 transition-colors"
-                      >
-                        Виж повече от тази категория →
-                      </Link>
                     </div>
                   </div>
                 );
@@ -227,7 +220,7 @@ const HomePage: React.FC = () => {
                         {/* Content */}
                         <div className="p-6">
                           <div className="flex items-center justify-between gap-2 mb-3">
-                            <CategoryBadge category={listing.category} />
+                            <CategoryBadge category={listing.category} to={categoryInfo?.path} />
                             <div className="flex items-center space-x-1 text-gray-400 text-xs shrink-0">
                               <Clock size={12} />
                               <span>{formatDate(listing.created_at)}</span>
@@ -249,7 +242,7 @@ const HomePage: React.FC = () => {
                             </div>
                           )}
 
-                          <div className="flex items-center justify-between mb-3">
+                          <div className="flex items-center justify-between">
                             <div className="text-2xl font-bold text-berry-700">
                               {listing.price.toFixed(2)} €
                             </div>
@@ -261,13 +254,6 @@ const HomePage: React.FC = () => {
                               Виж детайли →
                             </Link>
                           </div>
-
-                          <Link
-                            to={categoryInfo?.path || '/'}
-                            className="inline-flex items-center gap-1 text-xs text-wood-700 hover:text-wood-800 transition-colors"
-                          >
-                            Виж повече от тази категория →
-                          </Link>
                         </div>
                       </div>
                     );
