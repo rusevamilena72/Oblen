@@ -12,7 +12,7 @@ const Footer: React.FC = () => {
               <span className="text-xl font-bold text-white" itemProp="name">Фирма ОБЛЕН</span>
             </div>
             <p className="text-sm text-gray-400 max-w-md" itemProp="description">
-              Модерна платформа за публикуване и търсене на обяви. Открийте най-доброто за вашия дом и семейство.
+              Ръчно изработени катерушки за котки, декорации за дома и накити — всяко изделие е направено на ръка, с внимание към детайла.
             </p>
           </div>
 
@@ -20,11 +20,11 @@ const Footer: React.FC = () => {
           <div className="space-y-4">
             <h3 className="text-lg font-semibold text-white">Бързи връзки</h3>
             <div className="flex flex-col space-y-2 text-sm">
-              <a href="/" className="hover:text-blue-400 transition-colors">Начало</a>
-              <a href="/cat-climbers" className="hover:text-blue-400 transition-colors">Катерушки за котки</a>
-              <a href="/for-home" className="hover:text-blue-400 transition-colors">Декорации за дома</a>
-              <a href="/available" className="hover:text-blue-400 transition-colors">Накити</a>
-              <a href="/contact" className="hover:text-blue-400 transition-colors">Свържи се с нас</a>
+              <a href="/" className="hover:text-berry-300 transition-colors">Начало</a>
+              <a href="/cat-climbers" className="hover:text-berry-300 transition-colors">Катерушки за котки</a>
+              <a href="/for-home" className="hover:text-berry-300 transition-colors">Декорации за дома</a>
+              <a href="/available" className="hover:text-berry-300 transition-colors">Накити</a>
+              <a href="/contact" className="hover:text-berry-300 transition-colors">Свържи се с нас</a>
             </div>
           </div>
         </div>
