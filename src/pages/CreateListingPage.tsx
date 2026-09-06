@@ -93,12 +93,19 @@ const CreateListingPage: React.FC = () => {
   const removeImage = (index: number) => {
     const newImages = selectedImages.filter((_, i) => i !== index)
     const newPreviewUrls = imagePreviewUrls.filter((_, i) => i !== index)
-    
+
     // Освобождаване на memory за премахнатия URL
     URL.revokeObjectURL(imagePreviewUrls[index])
-    
+
     setSelectedImages(newImages)
     setImagePreviewUrls(newPreviewUrls)
+  }
+
+  // Премества избраната снимка на първо място — тя става основната
+  const setMainImage = (index: number) => {
+    if (index === 0) return
+    setSelectedImages(prev => [prev[index], ...prev.filter((_, i) => i !== index)])
+    setImagePreviewUrls(prev => [prev[index], ...prev.filter((_, i) => i !== index)])
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -395,10 +402,18 @@ const CreateListingPage: React.FC = () => {
                         >
                           <X size={16} />
                         </button>
-                        {index === 0 && (
-                          <div className="absolute bottom-2 left-2 bg-green-500 text-white text-xs px-2 py-1 rounded">
+                        {index === 0 ? (
+                          <div className="absolute bottom-2 left-2 bg-berry-700 text-white text-xs px-2 py-1 rounded">
                             Основна
                           </div>
+                        ) : (
+                          <button
+                            type="button"
+                            onClick={() => setMainImage(index)}
+                            className="absolute bottom-2 left-2 bg-white/90 text-gray-700 text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white hover:text-berry-700 shadow-sm"
+                          >
+                            Направи основна
+                          </button>
                         )}
                       </div>
                     ))}
