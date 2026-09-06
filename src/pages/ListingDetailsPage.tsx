@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Clock, MapPin, ArrowLeft, ChevronLeft, ChevronRight } from 'lucide-react';
 import { listingsService, Listing } from '../lib/listings';
+import CategoryBadge from '../components/CategoryBadge';
 
 const ListingDetailsPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -35,15 +36,6 @@ const ListingDetailsPage: React.FC = () => {
       month: 'long',
       year: 'numeric'
     });
-  };
-
-  const getCategoryLabel = (category: string) => {
-    const categories: { [key: string]: string } = {
-      'cat-climbers': 'Катерушки за котки',
-      'for-home': 'Декорации за дома',
-      'jewelry': 'Накити'
-    };
-    return categories[category] || category;
   };
 
   const getSubcategoryLabel = (subcategory: string) => {
@@ -96,7 +88,7 @@ const ListingDetailsPage: React.FC = () => {
             <p className="text-gray-600 mb-6">Обявата, която търсите, не съществува или е била изтрита.</p>
             <button
               onClick={() => navigate('/')}
-              className="inline-flex items-center space-x-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              className="inline-flex items-center space-x-2 px-6 py-3 bg-berry-700 text-white rounded-lg hover:bg-berry-800 transition-colors"
             >
               <ArrowLeft size={20} />
               <span>Обратно към началото</span>
@@ -124,11 +116,9 @@ const ListingDetailsPage: React.FC = () => {
           <div className="p-6 border-b border-gray-100">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center space-x-2">
-                <span className="inline-block px-3 py-1 bg-blue-100 text-blue-800 text-sm font-medium rounded-full">
-                  {getCategoryLabel(listing.category)}
-                </span>
+                <CategoryBadge category={listing.category} />
                 {listing.subcategory && listing.category === 'for-home' && (
-                  <span className="inline-block px-3 py-1 bg-green-100 text-green-800 text-sm font-medium rounded-full">
+                  <span className="inline-block px-3 py-1 bg-berry-100 text-berry-800 text-sm font-medium rounded-full">
                     {getSubcategoryLabel(listing.subcategory)}
                   </span>
                 )}
@@ -143,7 +133,7 @@ const ListingDetailsPage: React.FC = () => {
             
             <div className="flex items-center justify-between">
               <div>
-                <div className="text-3xl font-bold text-green-600">
+                <div className="text-3xl font-bold text-berry-700">
                   {listing.price.toFixed(2)} €
                 </div>
 
@@ -220,7 +210,7 @@ const ListingDetailsPage: React.FC = () => {
                     onClick={() => setCurrentImageIndex(index)}
                     className={`w-24 h-24 flex-shrink-0 rounded-lg overflow-hidden border-2 transition-colors ${
                       index === currentImageIndex
-                        ? 'border-blue-500'
+                        ? 'border-berry-600'
                         : 'border-gray-200 hover:border-gray-300'
                     }`}
                   >
