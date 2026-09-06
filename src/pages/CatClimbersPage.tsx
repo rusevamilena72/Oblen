@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Cat, Clock, MapPin, Plus, Eye } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { listingsService, Listing } from '../lib/listings';
+import CategoryBadge from '../components/CategoryBadge';
 
 const CatClimbersPage: React.FC = () => {
   const { user } = useAuth();
@@ -38,7 +39,7 @@ const CatClimbersPage: React.FC = () => {
       <div className="max-w-6xl mx-auto">
         {/* Page Header */}
         <div className="text-center mb-16">
-          <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-pink-500 rounded-2xl mx-auto mb-6 flex items-center justify-center">
+          <div className="w-16 h-16 bg-gradient-to-br from-berry-600 to-berry-800 rounded-2xl mx-auto mb-6 flex items-center justify-center">
             <Cat size={32} className="text-white" />
           </div>
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4" itemProp="name">
@@ -65,36 +66,31 @@ const CatClimbersPage: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {listings.map((listing) => (
               <div key={listing.id} className="bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300 overflow-hidden group">
-                {/* Header */}
-                <div className="bg-gradient-to-r from-orange-500 to-pink-500 p-4">
-                  <div className="flex items-center justify-end">
-                    <div className="flex items-center space-x-1 text-white text-xs">
+                {/* Снимка на продукта */}
+                {listing.images && listing.images.length > 0 && (
+                  <div className="w-full aspect-[4/3] bg-paper overflow-hidden">
+                    <img
+                      src={listing.images[0]}
+                      alt={listing.title}
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                )}
+
+                {/* Content */}
+                <div className="p-6">
+                  <div className="flex items-center justify-between gap-2 mb-3">
+                    <CategoryBadge category={listing.category} />
+                    <div className="flex items-center space-x-1 text-gray-400 text-xs shrink-0">
                       <Clock size={12} />
                       <span>{formatDate(listing.created_at)}</span>
                     </div>
                   </div>
-                </div>
 
-                {/* Content */}
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-orange-600 transition-colors">
+                  <h3 className="text-xl font-semibold text-ink mb-2 group-hover:text-berry-700 transition-colors">
                     {listing.title}
                   </h3>
-                  
-                  {/* Основна снимка */}
-                  {listing.images && listing.images.length > 0 && (
-                    <div className="mb-4 overflow-auto max-h-64" style={{
-                      scrollbarWidth: 'thin',
-                      scrollbarColor: '#cbd5e1 #f1f5f9'
-                    }}>
-                      <img
-                        src={listing.images[0]}
-                        alt={listing.title}
-                        className="w-full h-48 object-contain rounded-lg border border-gray-200 bg-gray-50"
-                      />
-                    </div>
-                  )}
-                  
+
                   <p className="text-gray-600 text-sm mb-4 line-clamp-3">
                     {listing.description}
                   </p>
@@ -107,18 +103,15 @@ const CatClimbersPage: React.FC = () => {
                   )}
 
                   <div className="flex items-center justify-between">
-                    <div>
-                      <div className="text-2xl font-bold text-green-600">
-                        {listing.price.toFixed(2)} €
-                      </div>
-
+                    <div className="text-2xl font-bold text-berry-700">
+                      {listing.price.toFixed(2)} €
                     </div>
 
                     <Link
                       to={`/listing/${listing.id}`}
-                      className="flex items-center space-x-1 text-orange-600 hover:text-orange-700 text-sm font-medium transition-colors"
+                      className="text-berry-700 hover:text-berry-800 text-sm font-medium transition-colors"
                     >
-                      <span>Детайли...</span>
+                      Виж детайли →
                     </Link>
                   </div>
                 </div>
