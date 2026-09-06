@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Home, Cat, Sofa, Gem, User, LogIn, Plus, MessageCircle, ShoppingCart } from 'lucide-react';
+import { Menu, X, Home, Cat, Sofa, Gem, MessageCircle, ShoppingCart, ExternalLink } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 import OrderForm from '../OrderForm';
 
@@ -8,7 +8,8 @@ const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isOrderFormOpen, setIsOrderFormOpen] = useState(false);
   const location = useLocation();
-  const { user, signOut } = useAuth();
+  const { user } = useAuth();
+  const adminPath = user ? '/profile' : '/login';
 
   const navigationItems = [
     { path: '/', label: 'Начало', icon: Home },
@@ -19,11 +20,6 @@ const Header: React.FC = () => {
   ];
 
   const isActive = (path: string) => location.pathname === path;
-
-  const handleSignOut = async () => {
-    await signOut();
-    setIsMenuOpen(false);
-  };
 
   const handleOrderClick = () => {
     setIsOrderFormOpen(true);
@@ -64,8 +60,8 @@ const Header: React.FC = () => {
             })}
           </nav>
 
-          {/* Auth Section - Desktop */}
-          <div className="hidden md:flex items-center space-x-4">
+          {/* Поръчай - Desktop */}
+          <div className="hidden md:flex items-center space-x-2">
             <button
               onClick={handleOrderClick}
               className="flex items-center space-x-2 px-4 py-2 bg-berry-700 text-white rounded-lg hover:bg-berry-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-berry-500 transition-colors font-medium"
@@ -73,33 +69,14 @@ const Header: React.FC = () => {
               <ShoppingCart size={16} />
               <span>Поръчай</span>
             </button>
-            {user ? (
-              <div className="flex items-center space-x-3">
-                <Link
-                  to="/profile"
-                  className="flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors"
-                >
-                  <User size={16} />
-                  <span>{user.user_metadata?.username || 'Профил'}</span>
-                </Link>
-                <button
-                  onClick={handleSignOut}
-                  className="px-3 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
-                >
-                  Излизане
-                </button>
-              </div>
-            ) : (
-              <div className="flex items-center">
-                <Link
-                  to="/login"
-                  className="flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-colors"
-                >
-                  <LogIn size={16} />
-                  <span>Вход</span>
-                </Link>
-              </div>
-            )}
+            <Link
+              to={adminPath}
+              title="Вход за администратор"
+              aria-label="Вход за администратор"
+              className="p-2 rounded-lg text-gray-300 hover:text-gray-600 hover:bg-gray-50 transition-colors"
+            >
+              <ExternalLink size={18} />
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -134,44 +111,24 @@ const Header: React.FC = () => {
                 );
               })}
               
-              {/* Auth Section - Mobile */}
+              {/* Поръчай - Mobile */}
               <div className="border-t border-gray-100 pt-2 mt-2">
                 <button
                   onClick={handleOrderClick}
-                  className="w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 flex items-center space-x-3 text-white bg-berry-700 hover:bg-berry-800 mb-2"
+                  className="w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 flex items-center space-x-3 text-white bg-berry-700 hover:bg-berry-800 mb-1"
                 >
                   <ShoppingCart size={18} />
                   <span>Поръчай</span>
                 </button>
-                {user ? (
-                  <>
-                    <Link
-                      to="/profile"
-                      onClick={() => setIsMenuOpen(false)}
-                      className="px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 flex items-center space-x-3 text-gray-600 hover:text-gray-900 hover:bg-gray-50"
-                    >
-                      <User size={18} />
-                      <span>{user.user_metadata?.username || 'Профил'}</span>
-                    </Link>
-                    <button
-                      onClick={handleSignOut}
-                      className="w-full text-left px-4 py-3 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
-                    >
-                      Излизане
-                    </button>
-                  </>
-                ) : (
-                  <>
-                    <Link
-                      to="/login"
-                      onClick={() => setIsMenuOpen(false)}
-                      className="px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 flex items-center space-x-3 text-gray-600 hover:text-gray-900 hover:bg-gray-50"
-                    >
-                      <LogIn size={18} />
-                      <span>Вход</span>
-                    </Link>
-                  </>
-                )}
+                <Link
+                  to={adminPath}
+                  onClick={() => setIsMenuOpen(false)}
+                  aria-label="Вход за администратор"
+                  className="w-full px-4 py-2 rounded-lg text-xs font-medium flex items-center space-x-3 text-gray-300 hover:text-gray-600 hover:bg-gray-50 transition-colors"
+                >
+                  <ExternalLink size={14} />
+                  <span>Вход за администратор</span>
+                </Link>
               </div>
             </nav>
           </div>
