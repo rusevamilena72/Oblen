@@ -131,12 +131,21 @@ const EditListingPage: React.FC = () => {
   const removeNewImage = (index: number) => {
     const newImages = selectedImages.filter((_, i) => i !== index)
     const newPreviewUrls = imagePreviewUrls.filter((_, i) => i !== index)
-    
+
     // Освобождаване на memory за премахнатия URL
     URL.revokeObjectURL(imagePreviewUrls[index])
-    
+
     setSelectedImages(newImages)
     setImagePreviewUrls(newPreviewUrls)
+  }
+
+  // Премества нова снимка на първо място сред новите снимки. Тя става
+  // основна за обявата само ако всички съществуващи снимки са изтрити —
+  // иначе основната винаги е първата от съществуващите.
+  const setMainNewImage = (index: number) => {
+    if (index === 0) return
+    setSelectedImages(prev => [prev[index], ...prev.filter((_, i) => i !== index)])
+    setImagePreviewUrls(prev => [prev[index], ...prev.filter((_, i) => i !== index)])
   }
 
   const removeExistingImage = (imageUrl: string) => {
@@ -145,6 +154,16 @@ const EditListingPage: React.FC = () => {
 
   const restoreExistingImage = (imageUrl: string) => {
     setImagesToDelete(prev => prev.filter(url => url !== imageUrl))
+  }
+
+  // Премества избраната снимка на първо място в масива — тя става основната,
+  // която се показва в картите на сайта и като първа в детайлите на обявата
+  const setMainExistingImage = (imageUrl: string) => {
+    setExistingImages(prev => {
+      const index = prev.indexOf(imageUrl)
+      if (index <= 0) return prev
+      return [imageUrl, ...prev.filter((_, i) => i !== index)]
+    })
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -221,6 +240,8 @@ const EditListingPage: React.FC = () => {
       imagePreviewUrls.forEach(url => URL.revokeObjectURL(url))
     }
   }, [])
+
+  const remainingExistingCount = existingImages.length - imagesToDelete.length
 
   if (!user) {
     navigate('/login')
@@ -456,10 +477,20 @@ const EditListingPage: React.FC = () => {
                                 <X size={16} />
                               </button>
                             )}
-                            {index === 0 && !isMarkedForDeletion && (
-                              <div className="absolute bottom-2 left-2 bg-blue-500 text-white text-xs px-2 py-1 rounded">
-                                Основна
-                              </div>
+                            {!isMarkedForDeletion && (
+                              index === 0 ? (
+                                <div className="absolute bottom-2 left-2 bg-berry-700 text-white text-xs px-2 py-1 rounded">
+                                  Основна
+                                </div>
+                              ) : (
+                                <button
+                                  type="button"
+                                  onClick={() => setMainExistingImage(imageUrl)}
+                                  className="absolute bottom-2 left-2 bg-white/90 text-gray-700 text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white hover:text-berry-700 shadow-sm"
+                                >
+                                  Направи основна
+                                </button>
+                              )
                             )}
                             {isMarkedForDeletion && (
                               <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 rounded-lg">
@@ -503,7 +534,14 @@ const EditListingPage: React.FC = () => {
                 {/* Preview на новите снимки */}
                 {imagePreviewUrls.length > 0 && (
                   <div className="mt-4">
-                    <h4 className="text-sm font-medium text-gray-600 mb-2">Нови снимки:</h4>
+                    <h4 className="text-sm font-medium text-gray-600 mb-2">
+                      Нови снимки:
+                      {remainingExistingCount > 0 && (
+                        <span className="font-normal text-gray-400">
+                          {' '}(добавят се след текущите снимки — за основна, отгоре)
+                        </span>
+                      )}
+                    </h4>
                     <div className="overflow-auto max-h-80 p-2 border border-gray-200 rounded-lg" style={{
                       scrollbarWidth: 'thin',
                       scrollbarColor: '#cbd5e1 #f1f5f9'
@@ -523,9 +561,23 @@ const EditListingPage: React.FC = () => {
                           >
                             <X size={16} />
                           </button>
-                          <div className="absolute bottom-2 left-2 bg-green-500 text-white text-xs px-2 py-1 rounded">
-                            Нова
-                          </div>
+                          {remainingExistingCount === 0 && index === 0 ? (
+                            <div className="absolute bottom-2 left-2 bg-berry-700 text-white text-xs px-2 py-1 rounded">
+                              Основна
+                            </div>
+                          ) : remainingExistingCount === 0 ? (
+                            <button
+                              type="button"
+                              onClick={() => setMainNewImage(index)}
+                              className="absolute bottom-2 left-2 bg-white/90 text-gray-700 text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white hover:text-berry-700 shadow-sm"
+                            >
+                              Направи основна
+                            </button>
+                          ) : (
+                            <div className="absolute bottom-2 left-2 bg-gray-500 text-white text-xs px-2 py-1 rounded">
+                              Нова
+                            </div>
+                          )}
                         </div>
                       ))}
                       </div>
