@@ -36,7 +36,7 @@ const Header: React.FC = () => {
           {/* Logo */}
           <Link
             to="/"
-            className="flex items-center opacity-100 hover:opacity-80 transition-opacity"
+            className="flex items-center mr-6 md:mr-10 shrink-0 opacity-100 hover:opacity-80 transition-opacity"
             itemProp="name"
           >
             <img src="/oblen-logo.png" alt="Фирма ОБЛЕН" className="h-10 w-auto" />
