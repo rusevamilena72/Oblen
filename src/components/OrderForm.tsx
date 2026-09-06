@@ -88,7 +88,7 @@ const OrderForm: React.FC<OrderFormProps> = ({ isOpen, onClose }) => {
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
       <div className="bg-white rounded-2xl shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="bg-gradient-to-r from-green-500 to-teal-500 p-6 rounded-t-2xl">
+        <div className="bg-gradient-to-r from-berry-600 to-berry-800 p-6 rounded-t-2xl">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
               <div className="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
@@ -96,7 +96,7 @@ const OrderForm: React.FC<OrderFormProps> = ({ isOpen, onClose }) => {
               </div>
               <div>
                 <h2 className="text-2xl font-bold text-white">Форма за поръчка</h2>
-                <p className="text-green-100">Попълнете данните за вашата поръчка</p>
+                <p className="text-berry-100">Попълнете данните за вашата поръчка</p>
               </div>
             </div>
             <button
@@ -144,7 +144,7 @@ const OrderForm: React.FC<OrderFormProps> = ({ isOpen, onClose }) => {
                   required
                   value={formData.email}
                   onChange={handleInputChange}
-                  className="appearance-none block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-green-500 focus:border-green-500 transition-colors"
+                  className="appearance-none block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-berry-500 focus:border-berry-500 transition-colors"
                   placeholder="Въведете вашия имейл адрес"
                 />
               </div>
@@ -165,7 +165,7 @@ const OrderForm: React.FC<OrderFormProps> = ({ isOpen, onClose }) => {
                   rows={3}
                   value={formData.customerDetails}
                   onChange={handleInputChange}
-                  className="appearance-none block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-green-500 focus:border-green-500 transition-colors resize-vertical"
+                  className="appearance-none block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-berry-500 focus:border-berry-500 transition-colors resize-vertical"
                   placeholder="Например: име, телефон, адрес за доставка и др."
                 />
               </div>
@@ -183,7 +183,7 @@ const OrderForm: React.FC<OrderFormProps> = ({ isOpen, onClose }) => {
                 rows={5}
                 value={formData.orderDetails}
                 onChange={handleInputChange}
-                className="appearance-none block w-full px-3 py-3 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-green-500 focus:border-green-500 transition-colors resize-vertical"
+                className="appearance-none block w-full px-3 py-3 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-berry-500 focus:border-berry-500 transition-colors resize-vertical"
                 placeholder="Например: Катерушка с къща - 2 броя, Накит със сини камъни - 1 брой, специални изисквания..."
               />
             </div>
@@ -193,7 +193,7 @@ const OrderForm: React.FC<OrderFormProps> = ({ isOpen, onClose }) => {
               <button
                 type="submit"
                 disabled={loading || success}
-                className="w-full flex justify-center items-center space-x-2 py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                className="w-full flex justify-center items-center space-x-2 py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-berry-700 hover:bg-berry-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-berry-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
               >
                 {loading ? (
                   <>
@@ -211,8 +211,8 @@ const OrderForm: React.FC<OrderFormProps> = ({ isOpen, onClose }) => {
           </form>
 
           {/* Info */}
-          <div className="mt-6 p-4 bg-blue-50 rounded-lg">
-            <p className="text-sm text-blue-700">
+          <div className="mt-6 p-4 bg-wood-50 rounded-lg">
+            <p className="text-sm text-wood-700">
               <strong>Забележка:</strong> След натискане на "Изпрати поръчката" вашата поръчка ще бъде 
               изпратена директно до нас. Ще получите потвърждение на посочения имейл адрес.
             </p>
