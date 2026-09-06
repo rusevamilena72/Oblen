@@ -34,9 +34,9 @@ const Header: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link 
-            to="/" 
-            className="text-xl font-bold text-gray-900 hover:text-blue-600 transition-colors"
+          <Link
+            to="/"
+            className="text-xl font-bold text-ink hover:text-berry-700 transition-colors"
             itemProp="name"
           >
             Фирма ОБЛЕН
@@ -52,7 +52,7 @@ const Header: React.FC = () => {
                   to={item.path}
                   className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center space-x-2 ${
                     isActive(item.path)
-                      ? 'bg-blue-50 text-blue-700 shadow-sm'
+                      ? 'bg-berry-50 text-berry-700 shadow-sm'
                       : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
                   }`}
                 >
@@ -67,7 +67,7 @@ const Header: React.FC = () => {
           <div className="hidden md:flex items-center space-x-4">
             <button
               onClick={handleOrderClick}
-              className="flex items-center space-x-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors font-medium"
+              className="flex items-center space-x-2 px-4 py-2 bg-berry-700 text-white rounded-lg hover:bg-berry-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-berry-500 transition-colors font-medium"
             >
               <ShoppingCart size={16} />
               <span>Поръчай</span>
@@ -123,7 +123,7 @@ const Header: React.FC = () => {
                     onClick={() => setIsMenuOpen(false)}
                     className={`px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 flex items-center space-x-3 ${
                       isActive(item.path)
-                        ? 'bg-blue-50 text-blue-700'
+                        ? 'bg-berry-50 text-berry-700'
                         : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
                     }`}
                   >
@@ -137,7 +137,7 @@ const Header: React.FC = () => {
               <div className="border-t border-gray-100 pt-2 mt-2">
                 <button
                   onClick={handleOrderClick}
-                  className="w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 flex items-center space-x-3 text-white bg-green-600 hover:bg-green-700 mb-2"
+                  className="w-full text-left px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 flex items-center space-x-3 text-white bg-berry-700 hover:bg-berry-800 mb-2"
                 >
                   <ShoppingCart size={18} />
                   <span>Поръчай</span>
