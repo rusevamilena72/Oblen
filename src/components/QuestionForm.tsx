@@ -86,7 +86,7 @@ const QuestionForm: React.FC<QuestionFormProps> = ({ isOpen, onClose }) => {
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
       <div className="bg-white rounded-2xl shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-500 to-teal-500 p-6 rounded-t-2xl">
+        <div className="bg-gradient-to-r from-berry-600 to-berry-800 p-6 rounded-t-2xl">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
               <div className="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
@@ -94,7 +94,7 @@ const QuestionForm: React.FC<QuestionFormProps> = ({ isOpen, onClose }) => {
               </div>
               <div>
                 <h2 className="text-2xl font-bold text-white">Задайте въпрос</h2>
-                <p className="text-blue-100">Свържете се с нас за всякакви въпроси</p>
+                <p className="text-berry-100">Свържете се с нас за всякакви въпроси</p>
               </div>
             </div>
             <button
@@ -142,7 +142,7 @@ const QuestionForm: React.FC<QuestionFormProps> = ({ isOpen, onClose }) => {
                   required
                   value={formData.email}
                   onChange={handleInputChange}
-                  className="appearance-none block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                  className="appearance-none block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-berry-500 focus:border-berry-500 transition-colors"
                   placeholder="Въведете вашия имейл адрес"
                 />
               </div>
@@ -160,7 +160,7 @@ const QuestionForm: React.FC<QuestionFormProps> = ({ isOpen, onClose }) => {
                 rows={5}
                 value={formData.question}
                 onChange={handleInputChange}
-                className="appearance-none block w-full px-3 py-3 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 transition-colors resize-vertical"
+                className="appearance-none block w-full px-3 py-3 border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-berry-500 focus:border-berry-500 transition-colors resize-vertical"
                 placeholder="Опишете вашия въпрос подробно..."
               />
             </div>
@@ -170,7 +170,7 @@ const QuestionForm: React.FC<QuestionFormProps> = ({ isOpen, onClose }) => {
               <button
                 type="submit"
                 disabled={loading || success}
-                className="w-full flex justify-center items-center space-x-2 py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                className="w-full flex justify-center items-center space-x-2 py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-berry-700 hover:bg-berry-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-berry-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
               >
                 {loading ? (
                   <>
@@ -188,8 +188,8 @@ const QuestionForm: React.FC<QuestionFormProps> = ({ isOpen, onClose }) => {
           </form>
 
           {/* Info */}
-          <div className="mt-6 p-4 bg-blue-50 rounded-lg">
-            <p className="text-sm text-blue-700">
+          <div className="mt-6 p-4 bg-wood-50 rounded-lg">
+            <p className="text-sm text-wood-700">
               <strong>Забележка:</strong> След натискане на "Изпрати въпроса" вашето запитване ще бъде 
               изпратено директно до нас. Ще получите отговор на посочения имейл адрес.
             </p>
