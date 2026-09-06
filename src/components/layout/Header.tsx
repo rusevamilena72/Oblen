@@ -36,10 +36,11 @@ const Header: React.FC = () => {
           {/* Logo */}
           <Link
             to="/"
-            className="text-xl font-bold text-ink hover:text-berry-700 transition-colors"
+            className="flex items-center opacity-100 hover:opacity-80 transition-opacity"
             itemProp="name"
           >
-            Фирма ОБЛЕН
+            <img src="/oblen-logo.png" alt="Фирма ОБЛЕН" className="h-10 w-auto" />
+            <span className="sr-only">Фирма ОБЛЕН</span>
           </Link>
 
           {/* Desktop Navigation */}
